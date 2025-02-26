@@ -1,39 +1,91 @@
-# Integrate React with Node.js Express & MySQL (run on same Server/Port)
+# React-Express-MySQL Application
 
-For more detail, please visit:
-> [How to integrate React with Node.js Express on same Server/Port](https://bezkoder.com/integrate-react-express-same-server-port/)
+## **Project Overview**
+This project is a **full-stack web application** using **React (Frontend), Express.js (Backend), and MySQL (Database)**. It is fully containerized using **Docker** and features a **CI/CD pipeline** with GitHub Actions.
 
-> [React (Components) CRUD example to consume Web API](https://bezkoder.com/react-crud-web-api/)
+---
+## **Setup Instructions**
+### **1. Clone the Repository**
+```bash
+git clone https://github.com/YOUR_GITHUB_USERNAME/react-express-mysql.git
+cd react-express-mysql
+```
 
-> [Build Node.js Rest APIs with Express, Sequelize & MySQL](https://bezkoder.com/node-js-express-sequelize-mysql/)
+### **2. Configure Environment Variables**
+Create a `.env` file for the backend in `node-express-server/`:
+```bash
+DB_HOST=db
+DB_USER=root
+DB_PASSWORD=rootpassword
+DB_NAME=testdb
+```
 
-More Practice:
-> [React (Hooks) CRUD example to consume Web API](https://bezkoder.com/react-hooks-crud-axios-api/)
+### **3. Start the Application Using Docker**
+Run the following command to build and start all services:
+```bash
+docker compose up --build
+```
 
-> [React Material UI examples with a CRUD Application](https://bezkoder.com/react-material-ui-examples-crud/)
+Once running:
+- **Frontend**: [http://localhost:3000](http://localhost:3000)
+- **Backend**: [http://localhost:8080](http://localhost:8080)
+- **Database**: MySQL running on port `3306`
 
-> [Server side Pagination in Node.js with Sequelize and MySQL](https://bezkoder.com/node-js-sequelize-pagination-mysql/)
+To stop the application:
+```bash
+docker compose down
+```
 
-> [Deploying/Hosting Node.js app on Heroku with MySQL database](https://bezkoder.com/deploy-node-js-app-heroku-cleardb-mysql/)
+---
+## **Docker Optimizations**
+✅ **Multi-stage builds** for smaller, optimized images.  
+✅ **Non-root user** in containers for security.  
+✅ **Bind mounts** for hot-reloading in development.  
+✅ **Environment variables** for flexible configuration.  
 
-Associations:
-> [Sequelize Associations: One-to-Many Relationship example](https://bezkoder.com/sequelize-associate-one-to-many/)
+---
+## **Local Development Setup** (Without Docker)
+### **Backend**
+```bash
+cd node-express-server
+npm install
+npm start
+```
+### **Frontend**
+```bash
+cd react-client
+npm install
+npm start
+```
+### **Database Setup (MySQL Locally)**
+1. Install MySQL.
+2. Create a database `testdb`.
+3. Update `node-express-server/app/config/db.config.js` with your credentials.
 
-> [Sequelize Associations: Many-to-Many Relationship example](https://bezkoder.com/sequelize-associate-many-to-many/)
+---
+## **CI/CD Pipeline Configuration**
+### **GitHub Actions Workflow (`.github/workflows/ci.yml`)**
+The pipeline performs:
+✅ **Build & Test**: Builds backend and frontend Docker images.  
+✅ **Lint & Security**: Runs ESLint and CodeQL security scans.  
+✅ **Push to DockerHub**: Publishes Docker images on successful tests.  
 
-Fullstack with Node.js Express:
-> [React.js + Node.js Express + MySQL](https://bezkoder.com/react-node-express-mysql/)
+#### **Trigger Events:**
+- On every commit to `main`.
+- On every pull request.
 
-> [React.js + Node.js Express + PostgreSQL](https://bezkoder.com/react-node-express-postgresql/)
+#### **Secrets Required:**
+- `DOCKERHUB_USERNAME`
+- `DOCKERHUB_TOKEN`
 
-> [React.js + Node.js Express + MongoDB](https://bezkoder.com/react-node-express-mongodb-mern-stack/)
+---
+## **Best Practices**
+✅ Use `.dockerignore` to reduce build context.  
+✅ Run containers in **least-privileged mode** for security.  
+✅ Use **GitHub Actions caching** to speed up builds.  
+✅ Log analysis & health checks using `health_check.sh` & `log_analysis.sh`.  
 
-Security:
-> [React + Node.js Express + MySQL: User Authentication with JWT example](https://www.bezkoder.com/react-express-authentication-jwt/)
+---
+## **Contributing**
+Feel free to open issues or submit PRs to improve the project. 🚀
 
-> [React + Node.js Express + MongoDB: User Authentication with JWT example](https://www.bezkoder.com/react-node-mongodb-auth/)
-
-Serverless:
-> [React Firebase CRUD App with Realtime Database](https://bezkoder.com/react-firebase-crud/)
-
-> [React Firestore CRUD App example | Firebase Cloud Firestore](https://bezkoder.com/react-firestore-crud/)
