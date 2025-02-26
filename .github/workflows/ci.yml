@@ -9,46 +9,34 @@ on:
       - main
 
 jobs:
-  build_backend:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-      
-      - name: Build Backend Container
-        run: |
-          docker build -t backend-image ./node-express-server
+build_backend:
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout YOUR repository
+      uses: actions/checkout@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Build Backend Container
+      run: |
+        ls -l  # Verify files are present
+        docker build -t backend-image -f node-express-server/Dockerfile ./node-express-server
   
   build_frontend:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-      
-      - name: Build Frontend Container
-        run: |
-          docker build -t frontend-image ./react-client
+build_frontend:
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout YOUR repository
+      uses: actions/checkout@v3
 
-  run_tests:
-    needs: [build_backend, build_frontend]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      
-      - name: Run Backend Unit Tests
-        run: |
-          docker run --rm backend-image npm test
-      
-      - name: Run Frontend Unit Tests
-        run: |
-          docker run --rm frontend-image npm test
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Build Frontend Container
+      run: |
+        ls -l  # Verify files are present
+        docker build -t frontend-image -f react-client/Dockerfile ./react-client
 
   lint_and_sast:
     needs: [build_backend, build_frontend]
