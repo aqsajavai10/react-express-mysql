@@ -1,0 +1,17 @@
+replicaCount: 1
+
+frontend:
+  image: aqsajavai10/react-frontend:latest
+  containerPort: 3000
+
+backend:
+  image: aqsajavai10/express-backend:latest
+  containerPort: 5000
+
+mysql:
+  image: mysql:5.7
+  rootPassword: rootpassword
+  user: testuser
+  password: testpass
+  database: testdb
+  port: 3306

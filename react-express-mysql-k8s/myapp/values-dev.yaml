@@ -1,0 +1,10 @@
+replicaCount: 1
+frontend:
+  image: aqsajavai10/react-frontend:dev
+backend:
+  image: aqsajavai10/express-backend:dev
+mysql:
+  rootPassword: devroot
+  user: devuser
+  password: devpass
+  database: devdb

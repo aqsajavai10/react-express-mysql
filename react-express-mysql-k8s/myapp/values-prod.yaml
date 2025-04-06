@@ -1,0 +1,10 @@
+replicaCount: 2
+frontend:
+  image: aqsajavai10/react-frontend:prod
+backend:
+  image: aqsajavai10/express-backend:prod
+mysql:
+  rootPassword: prodroot
+  user: produser
+  password: prodpass
+  database: proddb
